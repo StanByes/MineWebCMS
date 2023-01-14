@@ -66,6 +66,7 @@ class AppSchema extends CakeSchema
         'server_cache' => ['type' => 'integer', 'null' => false, 'default' => 0, 'length' => 1, 'unsigned' => false],
         'server_secretkey' => ['type' => 'string', 'null' => false, 'default' => null, 'length' => 50, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'],
         'server_timeout' => ['type' => 'float', 'null' => false, 'default' => null, 'unsigned' => false],
+        'server_player_list' => ['type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false],
         'condition' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 250, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'],
         'banner_server' => ['type' => 'text', 'null' => true, 'default' => null, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'],
         'email_send_type' => ['type' => 'integer', 'null' => true, 'default' => '1', 'length' => 1, 'unsigned' => false, 'comment' => '1 = default, 2 = smtp'],

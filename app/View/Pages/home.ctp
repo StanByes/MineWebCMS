@@ -80,6 +80,31 @@
             echo '<center><h3>' . $Lang->get('NEWS__NONE_PUBLISHED') . '</h3></center>';
         } ?>
     </div>
+
+    <?php
+    if (isset($player_online_list)) { ?>
+        <div class="row player-list text-center">
+            <div class="col-lg-12">
+                <h1 class="page-header animated fadeInLeft home">
+                    <?= $Lang->get('SERVER__ONLINE_PLAYERS') ?>
+                </h1>
+            </div>
+            <?php
+            if (!empty($player_online_list)) {
+                foreach ($player_online_list as $player) { ?>
+                    <div class="col-md-2 text-center animated pulse">
+                        <img class="avatar" src="/api/get_head_skin/<?= $player ?>">
+                        <h4><?= $player ?></h4>
+                    </div>
+                <?php }
+            } else {
+                echo '<h3>Aucun joueur connecté</h3>';
+            }
+            ?>
+        </div>
+    <?php }
+    ?>
+
     <div class="row btn-socials text-center">
         <?php
         $howManyBtns = count($findSocialButtons);

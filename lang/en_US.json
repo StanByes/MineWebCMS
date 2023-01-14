@@ -611,6 +611,10 @@
         "SERVER__CMD_NAME": "Name of the order",
         "SERVER__CMD_SLASH": "Do not put '/' in the command",
         "SERVER__CMD_ADD": "The order has been added successfully",
+        "SERVER__CONFIG_PLAYER_LIST": "List of online players on the site",
+        "SERVER__PLAYER_LIST_SET": "Make the list of players visible on the site",
+        "SERVER__PLAYER_LIST_SERVERS": "Server to display",
+        "SERVER__PLAYER_LIST_SAVE_SUCCESS": "Online players list server saved successfully!",
 
         "UPDATE__CHECK_STATUS": "Check if an update is available",
         "UPDATE__VIEW_CHANGELOG": "See the changes",

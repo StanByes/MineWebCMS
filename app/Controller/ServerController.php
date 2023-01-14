@@ -34,6 +34,7 @@ class ServerController extends AppController
         $this->set('isEnabled', $this->Configuration->getKey('server_state'));
         $this->set('isCacheEnabled', $this->Configuration->getKey('server_cache'));
         $this->set('timeout', $this->Configuration->getKey('server_timeout'));
+        $this->set('player_list', $this->Configuration->getKey('server_player_list'));
     }
 
     public function admin_cmd()
@@ -256,6 +257,24 @@ class ServerController extends AppController
         } else {
             throw new ForbiddenException();
         }
+    }
+
+    public function admin_editPlayerList()
+    {
+        $this->autoRender = false;
+        $this->response->type('json');
+        if (!$this->isConnected or !$this->Permissions->can('MANAGE_SERVERS'))
+            throw new ForbiddenException();
+
+        if (!$this->request->is('ajax'))
+            throw new NotFoundException();
+
+        $active = $this->request->data['active'];
+        if ($active and empty($this->request->data['server']))
+            return $this->response->body(json_encode(['status' => false, 'msg' => $this->Lang->get('ERROR__FILL_ALL_FIELDS')]));
+
+        $this->Configuration->setKey('server_player_list', $active ? $this->request->data['server'] : null);
+        return $this->response->body(json_encode(['statut' => true, 'msg' => $this->Lang->get('SERVER__PLAYER_LIST_SAVE_SUCCESS')]));
     }
 
     public function admin_link_ajax()

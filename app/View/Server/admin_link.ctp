@@ -56,6 +56,44 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header with-border">
+                    <h3 class="card-title"><?= $Lang->get('SERVER__CONFIG_PLAYER_LIST') ?></h3>
+                </div>
+                <div class="card-body">
+                    <form action="<?= $this->Html->url(['controller' => 'server', 'action' => 'editPlayerList', 'admin' => true]) ?>"
+                          method="post" data-ajax="true">
+
+                        <div class="ajax-msg"></div>
+
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="player-list-set" name="active" <?= $player_list ? "checked" : "" ?>>
+                            <label class="form-check-label" for="player-list-active"><?= $Lang->get("SERVER__PLAYER_LIST_SET") ?></label>
+                        </div>
+
+                        <div class="form-group" id="player-list-servers" <?= !$player_list ? 'style="display: none;"' : '' ?>>
+                            <label for="server-list-select"><?= $Lang->get("SERVER__PLAYER_LIST_SERVERS") ?></label>
+                            <select class="form-control" id="server-list-select" name="server">
+                                <?php
+                                foreach ($servers as $server) {
+                                    if ($server['Server']['type'] != '0')
+                                        continue;
+                                    ?>
+                                    <option value="<?= $server['Server']['id'] ?>" <?= isset($player_list) and $player_list == $server['Server']['id'] ? "selected" : "" ?>>
+                                        <?= $server['Server']['name'] ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary"><?= $Lang->get('GLOBAL__SUBMIT') ?></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <?php if (!empty($servers)) { ?>
         <?php foreach ($servers as $key => $value) { ?>
             <div class="row">
@@ -161,6 +199,16 @@
 
         return false;
     });
+
+    $('#player-list-set').change(function(event) {
+        event.preventDefault();
+
+        if ($(this)[0].checked) {
+            $("#player-list-servers").show();
+        } else {
+            $("#player-list-servers").hide();
+        }
+    })
 
     function initSelectInfos() {
         $('select[name="type"]').unbind('change')

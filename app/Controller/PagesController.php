@@ -144,6 +144,19 @@ class PagesController extends AppController
         $search_slider = $this->Slider->find('all');
         $this->set(compact('search_slider'));
 
+        // Récupération de la liste des joueurs connectés
+        $server_id = $this->Configuration->getKey('server_player_list');
+        if ($server_id) {
+            $call = $this->Server->call('GET_PLAYER_LIST', $server_id);
+
+            $player_online_list = [];
+            if (isset($call['GET_PLAYER_LIST']) && $call['GET_PLAYER_LIST'] !== 'NOT_FOUND')
+                foreach ($call['GET_PLAYER_LIST'] as $player)
+                    $player_online_list[] = $player;
+
+            $this->set(compact('player_online_list'));
+        }
+
         // Fin
         $this->render('home');
     }

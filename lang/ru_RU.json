@@ -613,6 +613,10 @@
        "SERVER__CMD_ADD": "Заказ был успешно добавлен",
        "SERVER__SEEMS_USED": "Похоже, что порт занят процессом.",
        "SERVER__SEEMS_CLOSE_OR_BLOCKED": "Порт веб-сервера кажется закрытым, так как брандмауэр блокирует соединение.",
+       "SERVER__CONFIG_PLAYER_LIST": "Список онлайн игроков на сайте",
+       "SERVER__PLAYER_LIST_SET": "Сделать список игроков видимым на сайте",
+       "SERVER__PLAYER_LIST_SERVERS": "Сервер для отображения",
+       "SERVER__PLAYER_LIST_SAVE_SUCCESS": "Сервер списка онлайн-игроков успешно сохранен!",
 
        "UPDATE__CHECK_STATUS" : "Проверить, доступно ли обновление" ,
        "UPDATE__VIEW_CHANGELOG": "Посмотреть изменения",
