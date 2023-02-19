@@ -587,7 +587,10 @@ class AppController extends Controller
     public function __initSeoConfiguration()
     {
         $this->loadModel('Seo');
-        $default = $this->Seo->find('first', ["conditions" => ['page' => null]])['Seo'];
+        $default = $this->Seo->find('first', ["conditions" => ['page' => null]]);
+        if ($default)
+            $default = $default['Seo'];
+
         $current_url = $this->here;
         $get_page = [];
         $condition = ["'" . $current_url . "' LIKE CONCAT(page, '%')"];
